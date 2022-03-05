@@ -2,26 +2,34 @@
 red='\e[1;31m'
 green='\e[0;32m'
 NC='\e[0m'
-MYIP=$(wget -qO- ifconfig.me/ip);
+bl='\e[36;1m'
+bd='\e[1m'
+MYIP=$(wget -qO- ifconfig.co);
 echo "Checking VPS"
+IZIN=$( curl https://raw.githubusercontent.com/Remyis/vpnku/main/ipvps | grep $MYIP )
+if [ $MYIP = $IZIN ]; then
+echo -e "${green}Permission Accepted...${NC}"
+else
+echo -e "${red}Permission Denied!${NC}";
+echo "Only For Premium Users"
+exit 0
+fi
 clear
-echo -e "\e[32m════════════════════════════════════════" | lolcat
-echo -e "             ═══[Trojan]═══"
-echo -e "\e[32m════════════════════════════════════════" | lolcat
-echo -e " 1)  Create Trojan Account"
-echo -e " 2)  Deleting Trojan Account"
-echo -e " 3)  Renew Trojan Account"
-echo -e " 4)  Check User Login Trojan"
-echo -e " 5)  Create Trojan Go"
-echo -e " 6)  Deleting Trojan Go Account"
-echo -e " 7)  Renew Trojan Go"
-echo -e " 8)  Check User Login Trojan Go"
 echo -e ""
-echo -e "\e[1;32m═══════════════════════════════════════" | lolcat
-echo -e " x)   MENU"
-echo -e "\e[1;32m═══════════════════════════════════════" | lolcat
+figlet Panel TrojanGFW | lolcat
+echo -e "\e[32m════════════════════════════════════════\e[m" | lolcat
+echo -e "             ═══[TrojanGFW]═══" 
+echo -e "\e[32m════════════════════════════════════════\e[m" | lolcat
+echo -e "$bd 1$bl]\e[m $bd Create Trojan Account"
+echo -e "$bd 2$bl]\e[m $bd Deleting Trojan Account"
+echo -e "$bd 3$bl]\e[m $bd Renew Trojan Account"
+echo -e "$bd 4$bl]\e[m $bd Check User Login Trojan"
 echo -e ""
-read -p "     Please Input Number  [1-8 or x] :  "  trojan
+echo -e "\e[1;32m══════════════════════════════════════════\e[m" | lolcat
+echo -e " x)   MENU   \e[m"  | lolcat
+echo -e "\e[1;32m══════════════════════════════════════════\e[m" | lolcat
+echo -e ""
+read -p "     Please Input Number  [1-4 or x] :  "  trojan
 echo -e ""
 case $trojan in
 1)
@@ -36,24 +44,10 @@ renew-tr
 4)
 cek-tr
 ;;
-5)
-add-trgo
-;;
-6)
-del-trgo
-;;
-7)
-renew-trgo
-;;
-8)
-cek-trgo
-;;
 x)
 menu
 ;;
 *)
-clear
-menu
+echo "Please enter an correct number"
 ;;
 esac
-
